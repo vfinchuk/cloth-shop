@@ -3,7 +3,7 @@ import classes from './Directory.module.scss'
 import MenuItem from '../MenuItem/MenuItem'
 
 const Directory = () => {
-  const [sections, setSections] = useState([
+  const [categories, setCategories] = useState([
     {
       title: 'hats',
       imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
@@ -41,8 +41,8 @@ const Directory = () => {
   return (
     <div className={classes.DirectoryMenu}>
       {
-        sections.map(({id, title, imageUrl, size}) => (
-          <MenuItem key={id} title={title} imageUrl={imageUrl} size={size} />
+        categories.map(({id, ...otherSectionProps}) => (
+          <MenuItem key={id} {...otherSectionProps} />
         ))
       }
     </div>
