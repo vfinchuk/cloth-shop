@@ -1,23 +1,11 @@
 import React from 'react'
-import './HomePage.scss'
+import classes from './HomePage.module.scss'
+import Directory from '../../components/Directory/Directory'
 
-function HomePage() {
-  const menuItems = ['HATS', 'JACKETS', 'SNEAKERS', 'WOMENS', 'MENS']
-
+const HomePage = () => {
   return (
-    <div className="homepage">
-      <div className="directory-menu">
-        {
-          menuItems.map((item, index) => (
-            <div key={index} className="menu-item">
-              <div className="content">
-                <h1 className="title">{item}</h1>
-                <span className="subtitle">SHOP NOW</span>
-              </div>
-            </div>
-          ))
-        }
-      </div>
+    <div className={classes.HomePage}>
+      <Directory />
     </div>
   )
 }
