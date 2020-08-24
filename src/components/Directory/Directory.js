@@ -3,7 +3,7 @@ import classes from './Directory.module.scss'
 import MenuItem from '../MenuItem/MenuItem'
 
 const Directory = () => {
-  const [categories, setCategories] = useState([
+  const [categories] = useState([
     {
       title: 'hats',
       imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
