@@ -22,9 +22,9 @@ const SignUp = () => {
       return
     }
 
-    const {user} = auth.createUserWithEmailAndPassword(email, password)
-
     try {
+      const {user} = await auth.createUserWithEmailAndPassword(email, password)
+
       await createUserProfileDocument(user, {displayName})
 
       setFormControls(() => ({

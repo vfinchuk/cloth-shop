@@ -23,14 +23,11 @@ function App() {
             ...snapShot.data()
           }))
         })
-      } else {
-        setCurrentUser(() => userAuth)
       }
+      setCurrentUser(() => userAuth)
     })
     return () => unsubscribe()
   }, [])
-
-  console.log(currentUser)
 
   return (
     <div>

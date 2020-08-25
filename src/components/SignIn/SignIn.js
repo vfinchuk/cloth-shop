@@ -2,27 +2,37 @@ import React, {useState} from 'react'
 import FormControl from '../UI/FormControl/FormControl'
 import classes from './SignIn.module.scss'
 import Button from '../UI/Button/Button'
-import {signInWithGoogle} from '../../firebase/firebase.utils'
+import {auth, signInWithGoogle} from '../../firebase/firebase.utils'
 
 const SignIn = () => {
   const [formControls, setFormControls] = useState({
     email: '',
     password: ''
   })
-  const submitHandler = event => {
+  const {email, password} = formControls
+
+  const submitHandler = async event => {
     event.preventDefault()
 
-    setFormControls(() => ({
-      email: '',
-      password: ''
-    }))
+    try {
+      await auth.signInWithEmailAndPassword(email, password)
+
+      setFormControls(() => ({
+        email: '',
+        password: ''
+      }))
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   const changeInputHandler = event => {
     event.persist()
+
+    const {name, value} = event.target
     setFormControls(prevState => ({
       ...prevState,
-      [event.target.name]: event.target.value
+      [name]: value
     }))
   }
 
@@ -37,7 +47,7 @@ const SignIn = () => {
           name="email"
           type="email"
           label="Email"
-          value={formControls.email}
+          value={email}
           handleChange={changeInputHandler}
           autoComplete="email"
           required
@@ -47,7 +57,7 @@ const SignIn = () => {
           name="password"
           type="password"
           label="Password"
-          value={formControls.password}
+          value={password}
           handleChange={changeInputHandler}
           autoComplete="new-password"
           required
