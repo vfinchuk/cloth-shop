@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import FormControl from '../UI/FormControl/FormControl'
 import classes from './SignIn.module.scss'
 import Button from '../UI/Button/Button'
+import {signInWithGoogle} from '../../firebase/firebase.utils'
 
 const SignIn = () => {
   const [formControls, setFormControls] = useState({
@@ -51,8 +52,13 @@ const SignIn = () => {
           autoComplete="new-password"
           required
         />
-
-        <Button type="submit">Sing In</Button>
+        <div className={classes.Buttons}>
+          <Button type="submit">Sing In</Button>
+          <Button
+            onClick={signInWithGoogle}
+            isGoogleSignIn
+          >Sing In With Google</Button>
+        </div>
       </form>
     </div>
   )

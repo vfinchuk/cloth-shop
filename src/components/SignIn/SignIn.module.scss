@@ -1,6 +1,12 @@
 .SignIn {
   width: 35vw;
+  min-width: 380px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+}
+
+.Buttons {
+  display: flex;
   justify-content: space-between;
 }
