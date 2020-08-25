@@ -8,9 +8,12 @@ import Header from './components/Header/Header'
 import SignInAndSignUpPage
   from './pages/SignInAndSignUpPage/SignInAndSignUpPage'
 import {auth, createUserProfileDocument} from './firebase/firebase.utils'
+import {useDispatch, useSelector} from 'react-redux'
+import {setCurrentUser} from './redux/user/userActions'
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(null)
+  const dispatch = useDispatch()
+  const currentUser = useSelector(state => state.user.currentUser)
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async userAuth => {
@@ -18,13 +21,14 @@ function App() {
         const userRef = await createUserProfileDocument(userAuth)
 
         userRef.onSnapshot(snapShot => {
-          setCurrentUser(() => ({
+          dispatch(setCurrentUser({
             id: snapShot.id,
             ...snapShot.data()
           }))
         })
+      } else {
+        dispatch(setCurrentUser(userAuth))
       }
-      setCurrentUser(() => userAuth)
     })
     return () => unsubscribe()
   }, [])
