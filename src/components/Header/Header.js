@@ -3,8 +3,11 @@ import classes from './Header.module.scss'
 import {Link} from 'react-router-dom'
 import {ReactComponent as Logo} from '../../assets/logo.svg'
 import {auth} from '../../firebase/firebase.utils'
+import {useSelector} from 'react-redux'
 
-const Header = ({currentUser}) => {
+const Header = () => {
+  const currentUser = useSelector(state => state.user.currentUser)
+
   return (
     <div className={classes.Header}>
       <Link to={`/`} className={classes.LogoContainer}>
