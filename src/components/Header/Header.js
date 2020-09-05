@@ -8,8 +8,6 @@ import {useSelector} from 'react-redux'
 const Header = () => {
   const currentUser = useSelector(state => state.user.currentUser)
 
-  console.log('Header currentUser:', currentUser)
-
   return (
     <div className={classes.Header}>
       <Link to={`/`} className={classes.LogoContainer}>
